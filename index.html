@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Ropa Shein para Mujeres</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #2698ad;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+
+        /* Sidebar de filtros */
+        .filters {
+            flex: 0.7;
+            /* Reducir el ancho del Sidebar */
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-right: 1px solid #dcdcdc;
+        }
+
+        .filters h2 {
+            color: #2c3e50;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+        /* tamaño de filtros     */
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .filter-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        /* Estilo de tarjetas de productos */
+        .content {
+            flex: 3;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            width: 20%;
+            /* tamaño de tarjetas de productos */
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .carousel img {
+            width: 100%;
+            display: none;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        .carousel .prev,
+        .carousel .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .carousel .prev {
+            left: 10px;
+        }
+
+        .carousel .next {
+            right: 10px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+
+        .card p {
+            color: #7f8c8d;
+        }
+
+        .price {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Estilos responsivos */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .content {
+                justify-content: center;
+            }
+
+            .card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <img src="assets/logos/shein.png" alt="Logo Closet Chic" style="height: 50px; margin-right: 15px;">
+            <h1>Closet Chic - Moda de Shein para Mujeres</h1>
+        </div>
+    </header>
+
+    <section id="prendas">
+        <h2>Prendas</h2>
+        <div class="container">
+            <!-- Sidebar de filtros -->
+            <aside class="filters">
+                <h2>Filtros</h2>
+
+                <div class="filter-group">
+                    <h3>Tipo de Prenda</h3>
+                    <label><input type="checkbox" name="tipo" value="camiseta"> Camisetas</label>
+                    <label><input type="checkbox" name="tipo" value="blusa"> Blusas</label>
+                    <label><input type="checkbox" name="tipo" value="vestido"> Vestidos</label>
+                    <label><input type="checkbox" name="tipo" value="pantalon"> Pantalones</label>
+                    <label><input type="checkbox" name="tipo" value="cartera"> Carteras</label>
+                    <label><input type="checkbox" name="tipo" value="sueter"> Sueter</label>
+                    <label><input type="checkbox" name="tipo" value="polera"> Polera</label>
+                    <label><input type="checkbox" name="tipo" value="short"> Shorts</label>
+                    <label><input type="checkbox" name="tipo" value="falda"> Falda</label>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Color</h3>
+                    <label><input type="checkbox" name="color" value="rojo"> Rojo</label>
+                    <label><input type="checkbox" name="color" value="negro"> Negro</label>
+                    <label><input type="checkbox" name="color" value="blanco"> Blanco</label>
+                    <label><input type="checkbox" name="color" value="plomo"> Plomo</label>
+                    <label><input type="checkbox" name="color" value="azul"> Azul</label>
+                    <label><input type="checkbox" name="color" value="rosado"> Rosado</label>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Talla</h3>
+                    <label><input type="checkbox" name="talla" value="S"> S</label>
+                    <label><input type="checkbox" name="talla" value="M"> M</label>
+                    <label><input type="checkbox" name="talla" value="L"> L</label>
+                    <label><input type="checkbox" name="talla" value="XS"> XS</label>
+                </div>
+            </aside>
+
+            <!-- Tarjetas de productos -->
+            <section class="content" id="product-list">
+                <!-- Producto 1 -->
+                <div class="card" data-tipo="polera" data-color="blanco" data-talla="S">
+                    <div class="carousel">
+                        <img src="assets/prendas/polera_blanca1.PNG" alt="Polera Oversize Blanca" class="active">
+                        <img src="assets/prendas/polera_blanca2.PNG" alt="Polera Oversize Blanca">
+                        <img src="assets\prendas\polera_blanca3.PNG" alt="Polera Oversize Blanca">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Polera Oversize Blanca Manga Larga Para Hombre Con Diseño Impreso</h3>
+                    <p class="price">S/.65</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="card" data-tipo="sueter" data-color="plomo" data-talla="S">
+                    <div class="carousel">
+                        <img src="assets/prendas/chompa_ploma3.PNG" alt="Sueter Plomo 1" class="active">
+                        <img src="assets/prendas/chompa_ploma1.PNG" alt="Sueter Plomo 2">
+                        <img src="assets/prendas/chompa_ploma2.PNG" alt="Sueter Plomo 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Sueter Plomo de mujer con dobladillo asimétrico y empalme</h3>
+                    <p class="price">S/.55</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="card" data-tipo="vestido" data-color="blanco" data-talla="XS">
+                    <div class="carousel">
+                        <img src="assets/prendas/vestido_blanco1.PNG" alt="Vestido Blanco 1" class="active">
+                        <img src="assets/prendas/vestido_blanco2.PNG" alt="Vestido Blanco 2">
+                        <img src="assets/prendas/vestido_blanco3.PNG" alt="Vestido Blanco 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Vestido Blanco Sin Mangas Con Cuello Redondo Y Diseño Impreso De Eslogan</h3>
+                    <p class="price">S/.65</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="card" data-tipo="vestido" data-color="negro" data-talla="S">
+                    <div class="carousel">
+                        <img src="assets/prendas/vestido_negro1.PNG" alt="Vestido Negro 1" class="active">
+                        <img src="assets/prendas/vestido_negro2.PNG" alt="Vestido Negro 2">
+                        <img src="assets/prendas/vestido_negro3.PNG" alt="Vestido Negro 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Vestido tank color negro con estampado de letra</h3>
+                    <p class="price">S/.65</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 5 -->
+                <div class="card" data-tipo="short" data-color="azul" data-talla="S">
+                    <div class="carousel">
+                        <img src="assets/prendas/short_jean2.PNG" alt="Short Azul 1" class="active">
+                        <img src="assets/prendas/short_jean1.PNG" alt="Short Azul 2">
+                        <img src="assets/prendas/short_jean3.PNG" alt="Short Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Shorts cortos de mezclilla casuales de borde crudo para mujer en unicolor</h3>
+                    <p class="price">S/.55</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 6 -->
+                <div class="card" data-tipo="vestido" data-color="rosado" data-talla="S">
+                    <div class="carousel">
+                        <img src="assets/prendas/vestido_rosa1.PNG" alt="Vestido Rosa 1" class="active">
+                        <img src="assets/prendas/vestido_rosa2.PNG" alt="Vestido Rosa 2">
+                        <img src="assets/prendas/vestido_rosa3.PNG" alt="Vestido Rosa 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Mono unitard con cuello con botón delantero con estampado de rombo</h3>
+                    <p class="price">S/.65</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 7 -->
+                <div class="card" data-tipo="vestido" data-color="negro" data-talla="S">
+                    <div class="carousel">
+                        <img src="assets/prendas/vestido_negro1.PNG" alt="Vestido Negro 1" class="active">
+                        <img src="assets/prendas/vestido_negro2.PNG" alt="Vestido Negro 2">
+                        <img src="assets/prendas/vestido_negro3.PNG" alt="Vestido Negro 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Vestido tank color negro con estampado de letra</h3>
+                    <p class="price">S/.65</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 8 -->
+                <div class="card" data-tipo="vestido" data-color="negro" data-talla="S">
+                    <div class="carousel">
+                        <img src="assets/prendas/vestido_negro1.PNG" alt="Vestido Negro 1" class="active">
+                        <img src="assets/prendas/vestido_negro2.PNG" alt="Vestido Negro 2">
+                        <img src="assets/prendas/vestido_negro3.PNG" alt="Vestido Negro 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Vestido tank color negro con estampado de letra</h3>
+                    <p class="price">S/.65</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+            </section>
+        </div>
+    </section>
+
+
+    <script>
+        // Función para filtrar productos según los checkboxes seleccionados
+        const filtros = document.querySelectorAll('.filters input');
+        const productos = document.querySelectorAll('.card');
+
+        filtros.forEach(filtro => {
+            filtro.addEventListener('change', () => {
+                const tipoSeleccionado = Array.from(document.querySelectorAll('input[name="tipo"]:checked')).map(el => el.value);
+                const colorSeleccionado = Array.from(document.querySelectorAll('input[name="color"]:checked')).map(el => el.value);
+                const tallaSeleccionada = Array.from(document.querySelectorAll('input[name="talla"]:checked')).map(el => el.value);
+
+                productos.forEach(producto => {
+                    const tipo = producto.getAttribute('data-tipo');
+                    const color = producto.getAttribute('data-color');
+                    const talla = producto.getAttribute('data-talla');
+
+                    const mostrar = (tipoSeleccionado.length === 0 || tipoSeleccionado.includes(tipo)) &&
+                        (colorSeleccionado.length === 0 || colorSeleccionado.includes(color)) &&
+                        (tallaSeleccionada.length === 0 || tallaSeleccionada.includes(talla));
+
+                    producto.style.display = mostrar ? 'block' : 'none';
+                });
+            });
+        });
+
+
+        // Función de carrusel para cambiar imágenes en cada producto
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            const images = carousel.querySelectorAll('img');
+            const prevButton = carousel.querySelector('.prev');
+            const nextButton = carousel.querySelector('.next');
+            let currentIndex = 0;
+
+            const showImage = (index) => {
+                images.forEach((img, i) => {
+                    img.classList.toggle('active', i === index);
+                });
+            };
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+                showImage(currentIndex);
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+                showImage(currentIndex);
+            });
+        });
+    </script>
+
+    <section id="perfumes">
+        <h2>Perfumes</h2>
+        <div class="content">
+            <!-- Sidebar de filtros -->
+            <aside class="filters">
+                <h2>Filtros</h2>
+
+                <div class="filter-group">
+                    <h3>Tipo de Perfume</h3>
+                    <label><input type="checkbox" name="tipo" value="Varon"> Varon</label>
+                    <label><input type="checkbox" name="tipo" value="Mujer"> Mujer</label>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Tipo de Aroma</h3>
+                    <label><input type="checkbox" name="aroma" value="oriental"> Oriental</label>
+                    <label><input type="checkbox" name="aroma" value="americano"> Americano</label>
+                    <label><input type="checkbox" name="aroma" value="blanco"> Blanco</label>
+
+                </div>
+
+                <div class="filter-group">
+                    <h3>Tiempo de Duracion</h3>
+                    <label><input type="checkbox" name="duracion" value="Larga "> Larga Duracion</label>
+                    <label><input type="checkbox" name="duracion" value="Baja"> Baja duración</label>
+
+                </div>
+            </aside>
+
+            <!-- Tarjetas de perfumes 1 -->
+            <div class="card" data-tipo="Mujer" data-aroma="oriental" data-duracion="Larga">
+                <div class="carousel">
+                    <img src="assets/perfumes/sb.png" alt="Vestido Negro 1" class="active">
+                    <img src="assets/prendas/vestido_negro2.PNG" alt="Vestido Negro 2">
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+                </div>
+                <h3>Vestido tank color negro con estampado de letra</h3>
+                <p class="price">S/.65</p>
+                <button class="btn">Comprar</button>
+            </div>
+
+            <!-- Tarjetas de perfumes 2 -->
+            <div class="card" data-tipo="Varon" data-aroma="americano" data-duracion="Baja">
+                <div class="carousel">
+                    <img src="assets/perfumes/sb.png" alt="Vestido Negro 1" class="active">
+                    <img src="assets/prendas/vestido_negro2.PNG" alt="Vestido Negro 2">
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+                </div>
+                <h3>Vestido tank color negro con estampado de letra</h3>
+                <p class="price">S/.65</p>
+                <button class="btn">Comprar </button>
+            </div>
+
+        
+
+        </div>
+    </section>
+
+    
+    <script>
+        // Función para filtrar perfumes según los checkboxes seleccionados
+        const filtrosp = document.querySelectorAll('.filters input');
+        const perfume = document.querySelectorAll('.card');
+
+        filtrosp.forEach(filtrop => {
+            filtrop.addEventListener('change', () => {
+                const tipoSeleccionado = Array.from(document.querySelectorAll('input[name="tipo"]:checked')).map(el => el.value);
+                const aroma = Array.from(document.querySelectorAll('input[name="aroma"]:checked')).map(el => el.value);
+                const duracionSeleccionada = Array.from(document.querySelectorAll('input[name="duracion"]:checked')).map(el => el.value);
+
+                perfume.forEach(perfumes => {
+                    const tipo = perfumes.getAttribute('data-tipo');
+                    const aroma = perfumes.getAttribute('data-aroma');
+                    const duracion = perfumes.getAttribute('data-duracion');
+
+                    const mostrar = (tipoSeleccionado.length === 0 || tipoSeleccionado.includes(tipo)) &&
+                        (aroma.length === 0 || aromaSeleccionado.includes(aroma)) &&
+                        (duracionSeleccionada.length === 0 || duracionSeleccionada.includes(duracion));
+
+                    producto.style.display = mostrar ? 'block' : 'none';
+                });
+            });
+        });
+
+        // Función de carrusel para cambiar imágenes en cada producto
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            const images = carousel.querySelectorAll('img');
+            const prevButton = carousel.querySelector('.prev');
+            const nextButton = carousel.querySelector('.next');
+            let currentIndex = 0;
+
+            const showImage = (index) => {
+                images.forEach((img, i) => {
+                    img.classList.toggle('active', i === index);
+                });
+            };
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+                showImage(currentIndex);
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+                showImage(currentIndex);
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
+
