@@ -41,8 +41,9 @@
         .filter-group {
             margin-bottom: 20px;
         }
+
         /* tamaño de filtros     */
-        
+
         .filter-group label {
             display: block;
             margin-bottom: 5px;
@@ -140,6 +141,51 @@
             background-color: #2980b9;
         }
 
+        /* Estilo del carrito */
+        .cart-container {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 20px;
+            max-height: calc(100vh - 40px); /* Hace que el carrito no sea más alto que la pantalla */
+            overflow-y: auto; /* Agrega una barra de desplazamiento si el contenido excede la altura */
+            background-color: white;
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ddd;
+        }
+        .cart {
+            flex: 0.3;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-left: 1px solid #dcdcdc;
+        }
+
+        .cart h2 {
+            color: #2c3e50;
+        }
+
+        .cart-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        .cart-item img {
+            width: 40px; /* Tamaño de la imagen en el carrito */
+            margin-right: 10px;
+        }
+
+        .subtotal {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
         /* Estilos responsivos */
         @media screen and (max-width: 768px) {
             .container {
@@ -152,6 +198,10 @@
 
             .card {
                 width: 90%;
+            }
+
+            .cart {
+                margin-top: 20px;
             }
         }
     </style>
@@ -184,6 +234,7 @@
                     <label><input type="checkbox" name="tipo" value="polera"> Polera</label>
                     <label><input type="checkbox" name="tipo" value="short"> Shorts</label>
                     <label><input type="checkbox" name="tipo" value="falda"> Falda</label>
+                    <label><input type="checkbox" name="tipo" value="chaleco"> Chaleco</label>
                 </div>
 
                 <div class="filter-group">
@@ -208,11 +259,11 @@
             <!-- Tarjetas de productos -->
             <section class="content" id="product-list">
                 <!-- Producto 1 -->
-                <div class="card" data-tipo="polera" data-color="blanco" data-talla="S">
+                <div class="card" data-tipo="polera" data-color="blanco" data-talla="S" data-imagen="assets/prendas/polera_blanca1.PNG" data-precio="65">
                     <div class="carousel">
                         <img src="assets/prendas/polera_blanca1.PNG" alt="Polera Oversize Blanca" class="active">
                         <img src="assets/prendas/polera_blanca2.PNG" alt="Polera Oversize Blanca">
-                        <img src="assets\prendas\polera_blanca3.PNG" alt="Polera Oversize Blanca">
+                        <img src="assets/prendas/polera_blanca3.PNG" alt="Polera Oversize Blanca">
                         <button class="prev">&#10094;</button>
                         <button class="next">&#10095;</button>
                     </div>
@@ -221,8 +272,9 @@
                     <button class="btn">Comprar</button>
                 </div>
 
+
                 <!-- Producto 2 -->
-                <div class="card" data-tipo="sueter" data-color="plomo" data-talla="S">
+                <div class="card" data-tipo="sueter" data-color="plomo" data-talla="S" data-imagen="assets/prendas/chompa_ploma3.PNG" data-precio="55">
                     <div class="carousel">
                         <img src="assets/prendas/chompa_ploma3.PNG" alt="Sueter Plomo 1" class="active">
                         <img src="assets/prendas/chompa_ploma1.PNG" alt="Sueter Plomo 2">
@@ -236,7 +288,7 @@
                 </div>
 
                 <!-- Producto 3 -->
-                <div class="card" data-tipo="vestido" data-color="blanco" data-talla="XS">
+                <div class="card" data-tipo="vestido" data-color="blanco" data-talla="XS" data-imagen="assets/prendas/vestido_blanco1.PNG" data-precio="65" >
                     <div class="carousel">
                         <img src="assets/prendas/vestido_blanco1.PNG" alt="Vestido Blanco 1" class="active">
                         <img src="assets/prendas/vestido_blanco2.PNG" alt="Vestido Blanco 2">
@@ -250,7 +302,7 @@
                 </div>
 
                 <!-- Producto 4 -->
-                <div class="card" data-tipo="vestido" data-color="negro" data-talla="S">
+                <div class="card" data-tipo="vestido" data-color="negro" data-talla="S" data-imagen="assets/prendas/vestido_negro1.PNG" data-precio="65">
                     <div class="carousel">
                         <img src="assets/prendas/vestido_negro1.PNG" alt="Vestido Negro 1" class="active">
                         <img src="assets/prendas/vestido_negro2.PNG" alt="Vestido Negro 2">
@@ -264,7 +316,7 @@
                 </div>
 
                 <!-- Producto 5 -->
-                <div class="card" data-tipo="short" data-color="azul" data-talla="S">
+                <div class="card" data-tipo="short" data-color="azul" data-talla="S" data-imagen="assets/prendas/short_jean2.PNG" data-precio="55">
                     <div class="carousel">
                         <img src="assets/prendas/short_jean2.PNG" alt="Short Azul 1" class="active">
                         <img src="assets/prendas/short_jean1.PNG" alt="Short Azul 2">
@@ -278,7 +330,7 @@
                 </div>
 
                 <!-- Producto 6 -->
-                <div class="card" data-tipo="vestido" data-color="rosado" data-talla="S">
+                <div class="card" data-tipo="vestido" data-color="rosado" data-talla="S" data-imagen="assets/prendas/vestido_rosa1.PNG" data-precio="65">
                     <div class="carousel">
                         <img src="assets/prendas/vestido_rosa1.PNG" alt="Vestido Rosa 1" class="active">
                         <img src="assets/prendas/vestido_rosa2.PNG" alt="Vestido Rosa 2">
@@ -292,59 +344,548 @@
                 </div>
 
                 <!-- Producto 7 -->
-                <div class="card" data-tipo="vestido" data-color="negro" data-talla="S">
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
                     <div class="carousel">
-                        <img src="assets/prendas/vestido_negro1.PNG" alt="Vestido Negro 1" class="active">
-                        <img src="assets/prendas/vestido_negro2.PNG" alt="Vestido Negro 2">
-                        <img src="assets/prendas/vestido_negro3.PNG" alt="Vestido Negro 3">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
                         <button class="prev">&#10094;</button>
                         <button class="next">&#10095;</button>
                     </div>
-                    <h3>Vestido tank color negro con estampado de letra</h3>
-                    <p class="price">S/.65</p>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
                     <button class="btn">Comprar</button>
                 </div>
 
                 <!-- Producto 8 -->
-                <div class="card" data-tipo="vestido" data-color="negro" data-talla="S">
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
                     <div class="carousel">
-                        <img src="assets/prendas/vestido_negro1.PNG" alt="Vestido Negro 1" class="active">
-                        <img src="assets/prendas/vestido_negro2.PNG" alt="Vestido Negro 2">
-                        <img src="assets/prendas/vestido_negro3.PNG" alt="Vestido Negro 3">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
                         <button class="prev">&#10094;</button>
                         <button class="next">&#10095;</button>
                     </div>
-                    <h3>Vestido tank color negro con estampado de letra</h3>
-                    <p class="price">S/.65</p>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 9 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 10 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 11 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 12 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                
+                <!-- Producto 13 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 14 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 15 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 16 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 17 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 18 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 19 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 20 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 21 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 22 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 23 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 24 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 25 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+                
+                <!-- Producto 26 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 27 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 28 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 29 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 30 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 31 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 32 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 33 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 34 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 35 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 36 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 37 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
+                    <button class="btn">Comprar</button>
+                </div>
+
+                <!-- Producto 38 -->
+                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                    <div class="carousel">
+                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
+                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
+                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <button class="prev">&#10094;</button>
+                        <button class="next">&#10095;</button>
+                    </div>
+                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
+                    <p class="price">S/.49</p>
                     <button class="btn">Comprar</button>
                 </div>
 
             </section>
+
+
+            <div class="cart-container">
+                <!-- Carrito de compras -->
+                <aside class="cart">
+                    <h2>Carrito de Compras</h2>
+                    <ul class="cart-list">
+                        <!-- Aquí se llenarán los productos seleccionados -->
+                    </ul>
+                    <p class="subtotal">Subtotal: S/. <span id="subtotal">0</span></p>
+                </aside>
+            </div>            
+            
         </div>
     </section>
 
 
     <script>
+        const botonesComprar = document.querySelectorAll('.btn');
+        const cartList = document.querySelector('.cart-list');
+        const subtotalElement = document.getElementById('subtotal');
+        let subtotal = 0;
+
+        botonesComprar.forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const card = e.target.closest('.card'); // Obtiene la tarjeta del producto
+                const precio = parseFloat(card.getAttribute('data-precio')); // Obtiene el precio del producto
+                const nombre = card.querySelector('h3').innerText; // Obtiene el nombre del producto
+                const imagen = card.getAttribute('data-imagen'); // Obtiene la URL de la imagen del producto
+
+                // Añadir item al carrito
+                const cartItem = document.createElement('li');
+                cartItem.classList.add('cart-item');
+
+                // Crear imagen y botón de eliminar
+                const img = document.createElement('img'); // Crea un elemento de imagen
+                img.src = imagen; // Asigna la URL de la imagen al src del elemento de imagen
+                img.alt = nombre; // Asigna el nombre como texto alternativo de la imagen
+
+                const removeBtn = document.createElement('button');
+                removeBtn.innerText = 'Eliminar';
+                removeBtn.classList.add('btn');
+                removeBtn.style.backgroundColor = '#e74c3c'; // Rojo para eliminar
+                removeBtn.style.marginLeft = '10px';
+                removeBtn.style.padding = '5px 10px';
+
+                // Manejo del evento de eliminar
+                removeBtn.addEventListener('click', () => {
+                    cartList.removeChild(cartItem);
+                    subtotal -= precio; // Restar el precio del subtotal
+                    subtotalElement.innerText = subtotal.toFixed(2); // Actualizar subtotal
+                });
+
+                // Actualizar el subtotal
+                subtotal += precio;
+                subtotalElement.innerText = subtotal.toFixed(2); // Actualizar subtotal
+
+                // Agregar elementos al carrito
+                cartItem.appendChild(img);
+                cartItem.appendChild(document.createTextNode(nombre));
+                cartItem.appendChild(removeBtn);
+                cartList.appendChild(cartItem);
+            });
+        });
+
+
+
         // Función para filtrar productos según los checkboxes seleccionados
         const filtros = document.querySelectorAll('.filters input');
         const productos = document.querySelectorAll('.card');
 
-        filtros.forEach(filtro => {
-            filtro.addEventListener('change', () => {
-                const tipoSeleccionado = Array.from(document.querySelectorAll('input[name="tipo"]:checked')).map(el => el.value);
-                const colorSeleccionado = Array.from(document.querySelectorAll('input[name="color"]:checked')).map(el => el.value);
-                const tallaSeleccionada = Array.from(document.querySelectorAll('input[name="talla"]:checked')).map(el => el.value);
+        filterCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const tipoSeleccionado = Array.from(document.querySelectorAll('.filters input[name="tipo"]:checked')).map(el => el.value);
+                const colorSeleccionado = Array.from(document.querySelectorAll('.filters input[name="color"]:checked')).map(el => el.value);
+                const tallaSeleccionada = Array.from(document.querySelectorAll('.filters input[name="talla"]:checked')).map(el => el.value);
+
+                const productos = document.querySelectorAll('.card');
 
                 productos.forEach(producto => {
-                    const tipo = producto.getAttribute('data-tipo');
-                    const color = producto.getAttribute('data-color');
-                    const talla = producto.getAttribute('data-talla');
+                    const tipoProducto = producto.getAttribute('data-tipo');
+                    const colorProducto = producto.getAttribute('data-color');
+                    const tallaProducto = producto.getAttribute('data-talla');
 
-                    const mostrar = (tipoSeleccionado.length === 0 || tipoSeleccionado.includes(tipo)) &&
-                        (colorSeleccionado.length === 0 || colorSeleccionado.includes(color)) &&
-                        (tallaSeleccionada.length === 0 || tallaSeleccionada.includes(talla));
-
-                    producto.style.display = mostrar ? 'block' : 'none';
+                    if (
+                        (tipoSeleccionado.length === 0 || tipoSeleccionado.includes(tipoProducto)) &&
+                        (colorSeleccionado.length === 0 || colorSeleccionado.includes(colorProducto)) &&
+                        (tallaSeleccionada.length === 0 || tallaSeleccionada.includes(tallaProducto))
+                    ) {
+                        producto.style.display = 'block';
+                    } else {
+                        producto.style.display = 'none';
+                    }
                 });
             });
         });
@@ -397,22 +938,21 @@
                 </div>
 
                 <div class="filter-group">
-                    <h3>Tiempo de Duracion</h3>
-                    <label><input type="checkbox" name="duracion" value="Larga "> Larga Duracion</label>
-                    <label><input type="checkbox" name="duracion" value="Baja"> Baja duración</label>
-
+                    <h3>Tiempo de Duración</h3>
+                    <label><input type="checkbox" name="duracion" value="Larga"> Larga Duración</label>
+                    <label><input type="checkbox" name="duracion" value="Baja"> Baja Duración</label>
                 </div>
             </aside>
 
-            <!-- Tarjetas de perfumes 1 -->
+            <!-- Tarjetas de productos (perfumes) -->
             <div class="card" data-tipo="Mujer" data-aroma="oriental" data-duracion="Larga">
                 <div class="carousel">
-                    <img src="assets/perfumes/sb.png" alt="Vestido Negro 1" class="active">
-                    <img src="assets/prendas/vestido_negro2.PNG" alt="Vestido Negro 2">
+                    <img src="assets/perfumes/sb.png" alt="Perfume Oriental" class="active">
+                    <img src="assets/perfumes/otro_perfume.png" alt="Otro Perfume">
                     <button class="prev">&#10094;</button>
                     <button class="next">&#10095;</button>
                 </div>
-                <h3>Vestido tank color negro con estampado de letra</h3>
+                <h3>Perfume Oriental para Mujer</h3>
                 <p class="price">S/.65</p>
                 <button class="btn">Comprar</button>
             </div>
@@ -439,21 +979,21 @@
     <script>
         // Función para filtrar perfumes según los checkboxes seleccionados
         const filtrosp = document.querySelectorAll('.filters input');
-        const perfume = document.querySelectorAll('.card');
+        const productosp = document.querySelectorAll('.card');
 
-        filtrosp.forEach(filtrop => {
-            filtrop.addEventListener('change', () => {
+        filtrosp.forEach(filtro => {
+            filtro.addEventListener('change', () => {
                 const tipoSeleccionado = Array.from(document.querySelectorAll('input[name="tipo"]:checked')).map(el => el.value);
-                const aroma = Array.from(document.querySelectorAll('input[name="aroma"]:checked')).map(el => el.value);
+                const aromaSeleccionado = Array.from(document.querySelectorAll('input[name="aroma"]:checked')).map(el => el.value);
                 const duracionSeleccionada = Array.from(document.querySelectorAll('input[name="duracion"]:checked')).map(el => el.value);
 
-                perfume.forEach(perfumes => {
-                    const tipo = perfumes.getAttribute('data-tipo');
-                    const aroma = perfumes.getAttribute('data-aroma');
-                    const duracion = perfumes.getAttribute('data-duracion');
+                productosp.forEach(producto => {
+                    const tipo = producto.getAttribute('data-tipo');
+                    const aroma = producto.getAttribute('data-aroma');
+                    const duracion = producto.getAttribute('data-duracion');
 
                     const mostrar = (tipoSeleccionado.length === 0 || tipoSeleccionado.includes(tipo)) &&
-                        (aroma.length === 0 || aromaSeleccionado.includes(aroma)) &&
+                        (aromaSeleccionado.length === 0 || aromaSeleccionado.includes(aroma)) &&
                         (duracionSeleccionada.length === 0 || duracionSeleccionada.includes(duracion));
 
                     producto.style.display = mostrar ? 'block' : 'none';
