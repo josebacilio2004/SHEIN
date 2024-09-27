@@ -14,36 +14,49 @@
         }
 
         header {
-            background-color: #2698ad;
+            background-color: #b421a8;
             color: white;
             padding: 20px;
             text-align: center;
+            position: fixed; /* Fijo en la parte superior */
+            top: 0;
+            width: 100%; /* Asegura que el header ocupe todo el ancho */
+            z-index: 1000; /* Asegura que el header esté sobre otros elementos */
         }
 
         .container {
             display: flex;
             padding: 20px;
+            margin-top: 120px; /* Ajusta este valor para dejar espacio para el header */
         }
 
+ 
         /* Sidebar de filtros */
         .filters {
             flex: 0.7;
             /* Reducir el ancho del Sidebar */
-            padding: 20px;
+            padding: 28px;
             background-color: #f5f5f5;
             border-right: 1px solid #dcdcdc;
+
+            /* Hacemos que el sidebar sea "sticky" */
+            position: -webkit-sticky;
+            position: sticky;
+            top: 20px; /* Altura desde el borde superior de la ventana */
+            max-height: calc(100vh - 40px); /* Para que no ocupe más de la ventana */
+            overflow-y: auto; /* Permitir scroll dentro del sidebar si es necesario */
         }
 
         .filters h2 {
             color: #2c3e50;
         }
 
+        /* Estilo para los grupos de filtros */
         .filter-group {
             margin-bottom: 20px;
         }
 
-        /* tamaño de filtros     */
-
+        /* Tamaño y estilo de los filtros */
         .filter-group label {
             display: block;
             margin-bottom: 5px;
@@ -52,6 +65,7 @@
         .filter-group input[type="checkbox"] {
             margin-right: 10px;
         }
+
 
         /* Estilo de tarjetas de productos */
         .content {
@@ -142,13 +156,23 @@
         }
 
         /* Estilo del carrito */
+        .cart-header {
+            display: flex; /* Usa Flexbox para alinear elementos en fila */
+            align-items: center; /* Centra verticalmente los elementos */
+        }
+
+        .cart-header img {
+            margin-right: 10px; /* Espacio entre el logo y el texto */
+        }
+
+
         .cart-container {
             position: -webkit-sticky;
             position: sticky;
             top: 20px;
             max-height: calc(100vh - 40px); /* Hace que el carrito no sea más alto que la pantalla */
             overflow-y: auto; /* Agrega una barra de desplazamiento si el contenido excede la altura */
-            background-color: white;
+            background-color: rgb(255, 255, 255);
             padding: 10px;
             width: 300px;
             border: 1px solid #ddd;
@@ -212,6 +236,7 @@
     <header>
         <div style="display: flex; align-items: center; justify-content: center;">
             <img src="assets/logos/shein.png" alt="Logo Closet Chic" style="height: 50px; margin-right: 15px;">
+            <img src="assets/logos/logocompra.webp" alt="Logo Closet Chic" style="height: 50px; margin-right: 15px;">
             <h1>Closet Chic - Moda de Shein para Mujeres</h1>
         </div>
     </header>
@@ -235,6 +260,7 @@
                     <label><input type="checkbox" name="tipo" value="short"> Shorts</label>
                     <label><input type="checkbox" name="tipo" value="falda"> Falda</label>
                     <label><input type="checkbox" name="tipo" value="chaleco"> Chaleco</label>
+                    <label><input type="checkbox" name="tipo" value="lenceria"> Lenceria</label>
                 </div>
 
                 <div class="filter-group">
@@ -358,44 +384,44 @@
                 </div>
 
                 <!-- Producto 8 -->
-                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                <div class="card" data-tipo="falda" data-color="azul" data-talla="S" data-imagen="assets/prendas/falda1.PNG" data-precio="55">
                     <div class="carousel">
-                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
-                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
-                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <img src="assets/prendas/falda1.PNG" alt="Falda Azul 1" class="active">
+                        <img src="assets/prendas/falda2.PNG" alt="Falda Azul 2">
+                        <img src="assets/prendas/falda3.PNG" alt="Falda Azul 3">
                         <button class="prev">&#10094;</button>
                         <button class="next">&#10095;</button>
                     </div>
-                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
-                    <p class="price">S/.49</p>
+                    <h3>Falda vaquera de mujer con cintura cruzada, hebilla de metal y dobladillo deshilachado.</h3>
+                    <p class="price">S/.55</p>
                     <button class="btn">Comprar</button>
                 </div>
 
                 <!-- Producto 9 -->
-                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                <div class="card" data-tipo="lenceria" data-color="rosado" data-talla="S" data-imagen="assets/prendas/lenceria3.PNG" data-precio="55">
                     <div class="carousel">
-                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
-                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
-                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <img src="assets/prendas/lenceria3.PNG" alt="Lenceria Rosa 1" class="active">
+                        <img src="assets/prendas/lenceria1.PNG" alt="Lenceria Rosa 2">
+                        <img src="assets/prendas/lenceria2.PNG" alt="Lenceria Rosa 3">
                         <button class="prev">&#10094;</button>
                         <button class="next">&#10095;</button>
                     </div>
-                    <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
-                    <p class="price">S/.49</p>
+                    <h3>Vestido lencero sexy con volantes y estampado de cerezas con tanga</h3>
+                    <p class="price">S/.55</p>
                     <button class="btn">Comprar</button>
                 </div>
 
                 <!-- Producto 10 -->
-                <div class="card" data-tipo="chaleco" data-color="azul" data-talla="M" data-imagen="assets/prendas/chaleco1.PNG" data-precio="49">
+                <div class="card" data-tipo="falda" data-color="negro" data-talla="S" data-imagen="assets/prendas/falda_negra3.PNG" data-precio="55">
                     <div class="carousel">
-                        <img src="assets/prendas/chaleco1.PNG" alt="Chaleco Azul 1" class="active">
-                        <img src="assets/prendas/chaleco2.PNG" alt="Chaleco Azul 2">
-                        <img src="assets/prendas/chaleco3.PNG" alt="Chaleco Azul 3">
+                        <img src="assets/prendas/falda_negra3.PNG" alt="Falda negro 1" class="active">
+                        <img src="assets/prendas/falda_negra1.PNG" alt="Falda negro 2">
+                        <img src="assets/prendas/falda_negra2.PNG" alt="Falda negro 3">
                         <button class="prev">&#10094;</button>
                         <button class="next">&#10095;</button>
                     </div>
                     <h3>Chaqueta corta de mezclilla para mujer de manga corta con bolsillos</h3>
-                    <p class="price">S/.49</p>
+                    <p class="price">S/.55</p>
                     <button class="btn">Comprar</button>
                 </div>
 
@@ -798,14 +824,18 @@
             <div class="cart-container">
                 <!-- Carrito de compras -->
                 <aside class="cart">
-                    <h2>Carrito de Compras</h2>
+                    <div class="cart-header">
+                        <img src="assets/logos/carrito.png" alt="Logo Closet Chic" style="height: 50px; margin-right: 15px;">
+                        <h2>CARRITO DE COMPRAS</h2>
+                    </div>
+                    
                     <ul class="cart-list">
                         <!-- Aquí se llenarán los productos seleccionados -->
                     </ul>
                     <p class="subtotal">Subtotal: S/. <span id="subtotal">0</span></p>
+                    <img src="assets/logos/shein.png" alt="Logo Closet Chic" style="height: 50px; margin-right: 15px;">
                 </aside>
-            </div>            
-            
+            </div>                      
         </div>
     </section>
 
