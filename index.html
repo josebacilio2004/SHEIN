@@ -26,8 +26,9 @@
 
         .container {
             display: flex;
+            flex-wrap: wrap; /* Permitir que los elementos cambien de línea en pantallas pequeñas */
             padding: 20px;
-            margin-top: 120px; /* Ajusta este valor para dejar espacio para el header */
+            margin-top: 120px; 
         }
 
         /* Estilos del formulario emergente */
@@ -123,8 +124,7 @@
 
         .card {
             background-color: white;
-            width: 20%;
-            /* tamaño de tarjetas de productos */
+            width: calc(100% / 5 - 20px); /* Ajusta el ancho en pantallas grandes */
             padding: 20px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
@@ -194,6 +194,7 @@
             cursor: pointer;
             margin-top: 10px;
             transition: background-color 0.3s ease;
+            width: 100%; /* Botones más grandes para móviles */
         }
 
         .btn:hover {
@@ -223,10 +224,11 @@
             border: 1px solid #ddd;
         }
         .cart {
-            flex: 0.3;
+            flex: 1;
             padding: 20px;
             background-color: #f5f5f5;
             border-left: 1px solid #dcdcdc;
+            max-width: 100%; /* Asegurar que no se desborde en pantallas móviles */
         }
 
         .cart h2 {
@@ -291,10 +293,16 @@
             background-color: #2980b9;
         }
 
-        /* Estilos responsivos */
+        /* Ajustes para móviles */
         @media screen and (max-width: 768px) {
             .container {
-                flex-direction: column;
+                flex-direction: column; /* Mostrar todo en una sola columna */
+                padding: 10px;
+            }
+
+            .filters {
+                width: 100%;
+                margin-bottom: 20px;
             }
 
             .content {
@@ -302,11 +310,33 @@
             }
 
             .card {
-                width: 90%;
+                width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+            }
+
+            .btn {
+                padding: 15px;
+                font-size: 16px; /* Botones más grandes en móviles */
+            }
+
+            header {
+                padding: 15px;
+                font-size: 18px;
             }
 
             .cart {
-                margin-top: 20px;
+                width: 100%; /* Asegura que el carrito ocupe el ancho completo en móviles */
+            }
+        }
+
+        /* Ajuste para pantallas aún más pequeñas (teléfonos) */
+        @media screen and (max-width: 480px) {
+            .btn {
+                padding: 20px;
+                font-size: 18px;
+            }
+
+            .card {
+                padding: 10px;
             }
         }
     </style>
