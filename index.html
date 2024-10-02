@@ -293,6 +293,25 @@
             background-color: #2980b9;
         }
 
+        /* Estilos responsivos */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .content {
+                justify-content: center;
+            }
+
+            .card {
+                width: 90%;
+            }
+
+            .cart {
+                margin-top: 20px;
+            }
+        }
+        
         /* Ajustes para móviles */
         @media screen and (max-width: 768px) {
             .container {
@@ -338,6 +357,37 @@
             .card {
                 padding: 10px;
             }
+        }
+
+                /* Diseño general para pantallas pequeñas */
+        @media only screen and (max-width: 768px) {
+        /* Ajustar el tamaño del logo y los encabezados */
+        .logo img {
+            width: 100px;
+        }
+
+        /* Alinear las tarjetas de productos en una sola columna */
+        .product-card {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        /* Ocultar el menú de filtros o hacerlo colapsable */
+        .filter-section {
+            display: none; /* O puedes usar un botón para mostrar/ocultar */
+        }
+
+        /* Ajustar el carrito de compras para que no ocupe demasiado espacio */
+        .cart-summary {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        }
+
+        /* Asegurar que las imágenes sean responsivas */
+        img {
+        max-width: 100%;
+        height: auto;
         }
     </style>
 </head>
