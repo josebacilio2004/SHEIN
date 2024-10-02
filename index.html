@@ -210,6 +210,42 @@
             color: #e74c3c;
         }
 
+        /* Botón QR y bloque de compra */
+        .qr-block {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .qr-block img {
+            width: 477px;
+            height: 226px;
+        }
+
+        .qr-block .monto {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .qr-block button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .qr-block button:hover {
+            background-color: #2980b9;
+        }
+
         /* Estilos responsivos */
         @media screen and (max-width: 768px) {
             .container {
@@ -873,9 +909,17 @@
                         <!-- Aquí se llenarán los productos seleccionados -->
                     </ul>
                     <p class="subtotal">Subtotal: S/. <span id="subtotal">0</span></p>
-                    <img src="assets/logos/shein.png" alt="Logo Closet Chic" style="height: 50px; margin-right: 15px;">
+                    <button id="vaciar-carrito" class="btn">Vaciar Carrito</button>
+                    <button id="comprar" class="btn">Realizar Compra</button>
                 </aside>
-            </div>                      
+                <!-- Bloque QR para realizar compra -->
+                <div class="qr-block" id="qr-block">
+                    <h2>Escanee el código QR para pagar</h2>
+                    <img src="assets/logos/QR.PNG" alt="Código QR">
+                    <p class="monto">Monto a Pagar: S/. <span id="total-con-descuento"></span></p>
+                    <button id="cerrar-qr">Cerrar</button>
+                </div>
+            </div>                    
         </div>
     </section>
 
@@ -885,6 +929,11 @@
         const botonesComprar = document.querySelectorAll('.btn');
         const cartList = document.querySelector('.cart-list');
         const subtotalElement = document.getElementById('subtotal');
+        const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+        const comprarBtn = document.getElementById('comprar');
+        const qrBlock = document.getElementById('qr-block');
+        const totalConDescuentoElement = document.getElementById('total-con-descuento');
+        const cerrarQrBtn = document.getElementById('cerrar-qr');
         let subtotal = 0;
 
         botonesComprar.forEach(boton => {
@@ -929,6 +978,34 @@
             });
         });
 
+        // Funcionalidad de Vaciar Carrito
+        vaciarCarritoBtn.addEventListener('click', () => {
+            cartList.innerHTML = ''; // Elimina todos los productos del carrito
+            subtotal = 0; // Reinicia el subtotal
+            subtotalElement.innerText = subtotal.toFixed(2); // Actualiza el subtotal en la interfaz
+        });
+
+        // Funcionalidad de Comprar
+        comprarBtn.addEventListener('click', () => {
+            if (subtotal > 0) {
+                let total = subtotal;
+
+                // Aplicar descuento del 10% si el total es >= 100
+                if (total >= 100) {
+                    total *= 0.95; // Aplica un 10% de descuento
+                }
+
+                totalConDescuentoElement.innerText = total.toFixed(2); // Actualiza el monto total con descuento
+                qrBlock.style.display = 'block'; // Muestra el bloque del QR
+            } else {
+                alert('El carrito está vacío. Agregue productos antes de comprar.');
+            }
+        });
+
+        // Funcionalidad para cerrar el bloque QR
+        cerrarQrBtn.addEventListener('click', () => {
+            qrBlock.style.display = 'none'; // Oculta el bloque del QR
+        });
 // --- FILTRO DE PRODUCTOS ---
 
 // Función para filtrar productos según los checkboxes seleccionados
