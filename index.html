@@ -362,8 +362,9 @@
                 /* Diseño general para pantallas pequeñas */
         @media only screen and (max-width: 768px) {
         /* Ajustar el tamaño del logo y los encabezados */
-        .logo img {
-            width: 100px;
+        .container {
+            flex-direction: column; /* Cambiar el diseño a una columna */
+            align-items: center; /* Centrar los elementos en móviles */
         }
 
         /* Alinear las tarjetas de productos en una sola columna */
@@ -372,24 +373,26 @@
             margin: 10px 0;
         }
 
-        /* Ocultar el menú de filtros o hacerlo colapsable */
-        .filter-section {
-            display: none; /* O puedes usar un botón para mostrar/ocultar */
+        .header img {
+            width: 80%; /* Ajustar el tamaño del logo */
+            margin: 0 auto;
         }
 
-        /* Ajustar el carrito de compras para que no ocupe demasiado espacio */
-        .cart-summary {
-            width: 100%;
-            margin-bottom: 20px;
-        }
+        .filters {
+            display: none; /* Ocultar filtros en pantallas pequeñas */
         }
 
-        /* Asegurar que las imágenes sean responsivas */
-        img {
-        max-width: 100%;
-        height: auto;
+        /* Ajustar el tamaño del texto en móviles */
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
         }
     </style>
+
 </head>
 
 <body>
