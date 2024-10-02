@@ -881,6 +881,7 @@
 
 
     <script>
+                // Función para agregar productos al carrito
         const botonesComprar = document.querySelectorAll('.btn');
         const cartList = document.querySelector('.cart-list');
         const subtotalElement = document.getElementById('subtotal');
@@ -928,9 +929,9 @@
             });
         });
 
+// --- FILTRO DE PRODUCTOS ---
 
-
-        // Función para filtrar productos según los checkboxes seleccionados
+// Función para filtrar productos según los checkboxes seleccionados
         const filterCheckboxes = document.querySelectorAll('.filters input'); // Selecciona todos los checkboxes de los filtros
         const productos = document.querySelectorAll('.card'); // Selecciona todos los productos
 
@@ -947,18 +948,22 @@
                     const colorProducto = producto.getAttribute('data-color');
                     const tallaProducto = producto.getAttribute('data-talla');
 
-                    // Verificar si el producto cumple con los filtros seleccionados
-                    const mostrar = (tipoSeleccionado.length === 0 || tipoSeleccionado.includes(tipoProducto)) &&
-                                    (colorSeleccionado.length === 0 || colorSeleccionado.includes(colorProducto)) &&
-                                    (tallaSeleccionada.length === 0 || tallaSeleccionada.includes(tallaProducto));
+                    // Comprobar si el producto coincide con el filtro seleccionado
+                    const coincideTipo = tipoSeleccionado.length === 0 || tipoSeleccionado.includes(tipoProducto);
+                    const coincideColor = colorSeleccionado.length === 0 || colorSeleccionado.includes(colorProducto);
+                    const coincideTalla = tallaSeleccionada.length === 0 || tallaSeleccionada.includes(tallaProducto);
 
-                    // Mostrar u ocultar el producto según los filtros
-                    producto.style.display = mostrar ? 'block' : 'none';
+                    // Mostrar u ocultar el producto si coincide con todos los filtros
+                    if (coincideTipo && coincideColor && coincideTalla) {
+                        producto.style.display = 'block';
+                    } else {
+                        producto.style.display = 'none';
+                    }
                 });
             });
         });
 
-
+// --- CARRUSEL DE IMÁGENES ---
 
         // Función de carrusel para cambiar imágenes en cada producto
         document.querySelectorAll('.carousel').forEach(carousel => {
@@ -983,6 +988,7 @@
                 showImage(currentIndex);
             });
         });
+
     </script>
 
     <section id="perfumes">
