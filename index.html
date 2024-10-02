@@ -30,6 +30,51 @@
             margin-top: 120px; /* Ajusta este valor para dejar espacio para el header */
         }
 
+        /* Estilos del formulario emergente */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            z-index: 1001;
+        }
+
+        .modal input, .modal button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .modal input {
+            border: 1px solid #ddd;
+        }
+
+        .modal button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal button:hover {
+            background-color: #2980b9;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
  
         /* Sidebar de filtros */
         .filters {
@@ -513,7 +558,7 @@
 
                 
                 <!-- Producto 13 -->
-                <div class="card" data-tipo="vestido" data-color="negro" data-talla="XS" data-imagen="assets/prendas/vest" data-precio="65">
+                <div class="card" data-tipo="vestido" data-color="negro" data-talla="XS" data-imagen="assets/prendas/vestidonegrodedoblepieza1.PNG" data-precio="65">
                     <div class="carousel">
                         <img src="assets/prendas/vestidonegrodedoblepieza1.PNG" alt="Vestido Negro 1" class="active">
                         <img src="assets/prendas/vestidonegrodedoblepieza2.PNG" alt="Vestido Negro 2">
@@ -896,7 +941,17 @@
 
             </section>
 
-
+            <!-- Modal para capturar datos del cliente -->
+            <div class="modal-overlay" id="modal-overlay"></div>
+            <div class="modal" id="customer-modal">
+                <h3>Datos del Cliente</h3>
+                <input type="text" id="nombre" placeholder="Nombre completo" required>
+                <input type="email" id="email" placeholder="Correo electrónico" required>
+                <input type="tel" id="telefono" placeholder="Teléfono" required>
+                <input type="text" id="direccion" placeholder="Dirección" required>
+                <button id="guardar-datos">Guardar Datos</button>
+            </div>
+            
             <div class="cart-container">
                 <!-- Carrito de compras -->
                 <aside class="cart">
@@ -913,10 +968,12 @@
                     <button id="comprar" class="btn">Realizar Compra</button>
                 </aside>
                 <!-- Bloque QR para realizar compra -->
-                <div class="qr-block" id="qr-block">
-                    <h2>Escanee el código QR para pagar</h2>
+                 <div class="qr-block" id="qr-block">
+                    <h2>Escanee el código QR para separar su pedido</h2>
                     <img src="assets/logos/QR.PNG" alt="Código QR">
-                    <p class="monto">Monto a Pagar: S/. <span id="total-con-descuento"></span></p>
+                    <p class="monto">Monto a Separar (20%): S/. <span id="monto-separar"></span></p>
+                    <p class="monto">Restante: S/. <span id="monto-restante"></span></p>
+                    <p class="monto">Precio Total: S/. <span id="total-con-descuento"></span></p>
                     <button id="cerrar-qr">Cerrar</button>
                 </div>
             </div>                    
@@ -932,9 +989,14 @@
         const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
         const comprarBtn = document.getElementById('comprar');
         const qrBlock = document.getElementById('qr-block');
+        const montoSepararElement = document.getElementById('monto-separar');
+        const montoRestanteElement = document.getElementById('monto-restante');
         const totalConDescuentoElement = document.getElementById('total-con-descuento');
         const cerrarQrBtn = document.getElementById('cerrar-qr');
         let subtotal = 0;
+        let customerData = {};
+
+        
 
         botonesComprar.forEach(boton => {
             boton.addEventListener('click', (e) => {
@@ -985,26 +1047,65 @@
             subtotalElement.innerText = subtotal.toFixed(2); // Actualiza el subtotal en la interfaz
         });
 
-        // Funcionalidad de Comprar
-        comprarBtn.addEventListener('click', () => {
-            if (subtotal > 0) {
-                let total = subtotal;
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('customer-modal');
+            const overlay = document.getElementById('modal-overlay');
+            const guardarDatosBtn = document.getElementById('guardar-datos');
+            const comprarBtn = document.getElementById('comprar');
+            const cerrarQrBtn = document.getElementById('cerrar-qr');
+            const qrBlock = document.getElementById('qr-block');
 
-                // Aplicar descuento del 10% si el total es >= 100
-                if (total >= 100) {
-                    total *= 0.95; // Aplica un 10% de descuento
+            // Mostrar formulario al cargar la página
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+
+            // Guardar datos del cliente
+            guardarDatosBtn.addEventListener('click', () => {
+                const nombre = document.getElementById('nombre').value;
+                const email = document.getElementById('email').value;
+                const telefono = document.getElementById('telefono').value;
+                const direccion = document.getElementById('direccion').value;
+
+                if (nombre && email && telefono && direccion) {
+                    customerData = { nombre, email, telefono, direccion };
+                    modal.style.display = 'none';
+                    overlay.style.display = 'none';
+                } else {
+                    alert('Por favor, complete todos los campos.');
                 }
+            });
 
-                totalConDescuentoElement.innerText = total.toFixed(2); // Actualiza el monto total con descuento
-                qrBlock.style.display = 'block'; // Muestra el bloque del QR
-            } else {
-                alert('El carrito está vacío. Agregue productos antes de comprar.');
-            }
-        });
+            // Funcionalidad de Comprar
+            comprarBtn.addEventListener('click', () => {
+                if (subtotal > 0) {
+                    let total = subtotal;
 
-        // Funcionalidad para cerrar el bloque QR
-        cerrarQrBtn.addEventListener('click', () => {
-            qrBlock.style.display = 'none'; // Oculta el bloque del QR
+                    // Aplicar descuento del 10% si el total es >= 100
+                    if (total >= 100) {
+                        total *= 0.95; // Aplica un 10% de descuento
+                    }
+                    const montoSeparar = total * 0.2; // 20% del total
+                    const montoRestante = total - montoSeparar;
+
+                    totalConDescuentoElement.innerText = total.toFixed(2);
+                    montoSepararElement.innerText = montoSeparar.toFixed(2);
+                    montoRestanteElement.innerText = montoRestante.toFixed(2);
+                    qrBlock.style.display = 'block';
+
+                    console.log(`Datos del cliente:`, customerData);
+                    console.log(`Monto total: ${total.toFixed(2)}, Separar: ${montoSeparar}, Restante: ${montoRestante}`);
+
+                    totalConDescuentoElement.innerText = total.toFixed(2); // Actualiza el monto total con descuento
+                    qrBlock.style.display = 'block'; // Muestra el bloque del QR
+                } else {
+                    alert('El carrito está vacío. Agregue productos antes de comprar.');
+                }
+            });
+
+            // Funcionalidad para cerrar el bloque QR
+            cerrarQrBtn.addEventListener('click', () => {
+                qrBlock.style.display = 'none'; // Oculta el bloque del QR
+            });
         });
 // --- FILTRO DE PRODUCTOS ---
 
